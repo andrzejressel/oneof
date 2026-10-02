@@ -1,6 +1,6 @@
 # OneOf
 
-[![Maven Central](https://img.shields.io/maven-central/v/io.upwake/oneof)](https://central.sonatype.com/artifact/io.upwake/oneof)
+[![Maven Central](https://img.shields.io/maven-central/v/dev.upwake/oneof)](https://central.sonatype.com/artifact/dev.upwake/oneof)
 [![License](https://img.shields.io/github/license/nolequen/oneof)](licence.md)
 ![Java 1.8](https://img.shields.io/badge/Supports%20Java-1.8-orange?logo=java)
 
@@ -8,6 +8,15 @@ The library provides a kind of discriminated unions for Java: `OneOf<T0, ..., Tn
 types `T0`...`Tn`.
 
 _Inspired by [OneOf](https://github.com/mcintyre321/OneOf) C# library._
+
+## Installation
+
+```kotlin
+implementation("dev.upwake:oneof:2.0.0")
+```
+
+> Versions 1.x were published as `io.upwake:oneof` with the `io.upwake.oneof` package.
+> To migrate, change the dependency to `dev.upwake:oneof` and the imports to `dev.upwake.oneof`.
 
 ## Examples
 

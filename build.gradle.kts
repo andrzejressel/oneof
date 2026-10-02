@@ -4,8 +4,8 @@ plugins {
     id("org.jreleaser") version "1.17.0"
 }
 
-group = "io.upwake"
-version = "1.0.1"
+group = "dev.upwake"
+version = "2.0.0"
 
 repositories {
     mavenCentral()

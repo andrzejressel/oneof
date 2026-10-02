@@ -1,4 +1,4 @@
-package io.upwake.oneof;
+package dev.upwake.oneof;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
