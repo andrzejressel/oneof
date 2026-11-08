@@ -57,7 +57,7 @@ public class GenerateOneOf extends DefaultTask {
   @TaskAction
   public void generate() {
     for (int i = 2; i <= count; i++) {
-      final var filename = dir + "/src/main/java/dev/upwake/oneof/OneOf" + i + ".java";
+      final var filename = dir + "/src/main/java/pl/andrzejressel/oneof/OneOf" + i + ".java";
       new File(filename).delete();
       try (var writer = new OutputStreamWriter(new FileOutputStream(filename))) {
         template().process(Map.of(key, i), writer);

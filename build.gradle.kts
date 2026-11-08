@@ -1,23 +1,36 @@
 plugins {
     `java-library`
     `maven-publish`
-    id("org.jreleaser") version "1.17.0"
+    id("org.jreleaser") version "1.27.0"
 }
 
-group = "dev.upwake"
-version = "2.0.0"
+group = "pl.andrzejressel"
+version = "0.0.1"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation("org.jetbrains:annotations:26.0.2")
+    testImplementation(platform("org.junit:junit-bom:6.1.3"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+}
+
+tasks.test {
+    useJUnitPlatform()
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
 
     withSourcesJar()
     withJavadocJar()
@@ -50,7 +63,7 @@ publishing {
             pom {
                 name.set(project.name)
                 description.set("Easy to use discriminated unions for Java with compile time matching.")
-                url.set("https://github.com/nolequen/oneof")
+                url.set("https://github.com/andrzej.ressel/oneof")
                 licenses {
                     license {
                         name.set("MIT License")
@@ -59,15 +72,14 @@ publishing {
                 }
                 developers {
                     developer {
-                        name.set("Anton Potsyus")
-                        email.set("nolequen@gmail.com")
-                        url.set("http://www.nlq.su/")
+                        name.set("Andrzej Ressel")
+                        email.set("github@andrzejressel.pl")
                     }
                 }
                 scm {
-                    connection.set("scm:git:git://github.com/nolequen/oneof.git")
-                    developerConnection.set("scm:git:ssh://github.com/nolequen/oneof.git")
-                    url.set("https://github.com/nolequen/oneof")
+                    connection.set("scm:git:git://github.com/andrzej.ressel/oneof.git")
+                    developerConnection.set("scm:git:ssh://github.com/andrzej.ressel/oneof.git")
+                    url.set("https://github.com/andrzej.ressel/oneof")
                 }
             }
         }
@@ -86,10 +98,11 @@ jreleaser {
     release {
         project {
             inceptionYear = "2025"
-            author("@nolequen")
+            author("Andrzej Ressel")
         }
         signing {
             active = org.jreleaser.model.Active.ALWAYS
+            mode = org.jreleaser.model.Signing.Mode.COMMAND
             armored = true
             verify = true
         }
