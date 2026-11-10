@@ -48,6 +48,17 @@ sealed public interface OneOf4<T1, T2, T3, T4> permits OneOf4.First, OneOf4.Seco
         };
     }
 
+    @SuppressWarnings("unchecked")
+    static <T1, T2, T3, T4> OneOf4<T1, T2, T3, T4> fromIndex(int index, Object obj) {
+        return switch (index) {
+            case 0 -> new First<>((T1) obj);
+            case 1 -> new Second<>((T2) obj);
+            case 2 -> new Third<>((T3) obj);
+            case 3 -> new Fourth<>((T4) obj);
+            default -> throw new IllegalArgumentException("Invalid index: " + index);
+        };
+    }
+
     static <T1, T2, T3, T4> OneOf4<T1, T2, T3, T4> first(T1 value) {
         return new First<>(value);
     }

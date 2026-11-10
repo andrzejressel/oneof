@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "pl.andrzejressel"
-version = "0.0.1"
+version = "0.0.2"
 
 repositories {
     mavenCentral()
@@ -102,9 +102,11 @@ jreleaser {
         }
         signing {
             active = org.jreleaser.model.Active.ALWAYS
-            mode = org.jreleaser.model.Signing.Mode.COMMAND
-            armored = true
-            verify = true
+            pgp {
+                mode = org.jreleaser.model.Signing.Mode.COMMAND
+                armored = true
+                verify = true
+            }
         }
         deploy {
             maven {

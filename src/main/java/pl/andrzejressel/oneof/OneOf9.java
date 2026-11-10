@@ -143,6 +143,22 @@ sealed public interface OneOf9<T1, T2, T3, T4, T5, T6, T7, T8, T9> permits OneOf
         };
     }
 
+    @SuppressWarnings("unchecked")
+    static <T1, T2, T3, T4, T5, T6, T7, T8, T9> OneOf9<T1, T2, T3, T4, T5, T6, T7, T8, T9> fromIndex(int index, Object obj) {
+        return switch (index) {
+            case 0 -> new First<>((T1) obj);
+            case 1 -> new Second<>((T2) obj);
+            case 2 -> new Third<>((T3) obj);
+            case 3 -> new Fourth<>((T4) obj);
+            case 4 -> new Fifth<>((T5) obj);
+            case 5 -> new Sixth<>((T6) obj);
+            case 6 -> new Seventh<>((T7) obj);
+            case 7 -> new Eighth<>((T8) obj);
+            case 8 -> new Ninth<>((T9) obj);
+            default -> throw new IllegalArgumentException("Invalid index: " + index);
+        };
+    }
+
     static <T1, T2, T3, T4, T5, T6, T7, T8, T9> OneOf9<T1, T2, T3, T4, T5, T6, T7, T8, T9> first(T1 value) {
         return new First<>(value);
     }

@@ -24,6 +24,15 @@ sealed public interface OneOf2<T1, T2> permits OneOf2.First, OneOf2.Second {
         };
     }
 
+    @SuppressWarnings("unchecked")
+    static <T1, T2> OneOf2<T1, T2> fromIndex(int index, Object obj) {
+        return switch (index) {
+            case 0 -> new First<>((T1) obj);
+            case 1 -> new Second<>((T2) obj);
+            default -> throw new IllegalArgumentException("Invalid index: " + index);
+        };
+    }
+
     static <T1, T2> OneOf2<T1, T2> first(T1 value) {
         return new First<>(value);
     }

@@ -35,6 +35,16 @@ sealed public interface OneOf3<T1, T2, T3> permits OneOf3.First, OneOf3.Second, 
         };
     }
 
+    @SuppressWarnings("unchecked")
+    static <T1, T2, T3> OneOf3<T1, T2, T3> fromIndex(int index, Object obj) {
+        return switch (index) {
+            case 0 -> new First<>((T1) obj);
+            case 1 -> new Second<>((T2) obj);
+            case 2 -> new Third<>((T3) obj);
+            default -> throw new IllegalArgumentException("Invalid index: " + index);
+        };
+    }
+
     static <T1, T2, T3> OneOf3<T1, T2, T3> first(T1 value) {
         return new First<>(value);
     }

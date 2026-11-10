@@ -63,6 +63,18 @@ sealed public interface OneOf5<T1, T2, T3, T4, T5> permits OneOf5.First, OneOf5.
         };
     }
 
+    @SuppressWarnings("unchecked")
+    static <T1, T2, T3, T4, T5> OneOf5<T1, T2, T3, T4, T5> fromIndex(int index, Object obj) {
+        return switch (index) {
+            case 0 -> new First<>((T1) obj);
+            case 1 -> new Second<>((T2) obj);
+            case 2 -> new Third<>((T3) obj);
+            case 3 -> new Fourth<>((T4) obj);
+            case 4 -> new Fifth<>((T5) obj);
+            default -> throw new IllegalArgumentException("Invalid index: " + index);
+        };
+    }
+
     static <T1, T2, T3, T4, T5> OneOf5<T1, T2, T3, T4, T5> first(T1 value) {
         return new First<>(value);
     }

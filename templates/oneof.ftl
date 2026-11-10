@@ -26,6 +26,16 @@ sealed public interface OneOf${oneof}<${types_seq?join(", ")}> permits OneOf${on
         };
     }
 
+    @SuppressWarnings("unchecked")
+    static <${types_seq?join(", ")}> OneOf${oneof}<${types_seq?join(", ")}> fromIndex(int index, Object obj) {
+        return switch (index) {
+<#list 1..oneof as i>
+            case ${i - 1} -> new ${variant_names[i - 1]}<>((T${i}) obj);
+</#list>
+            default -> throw new IllegalArgumentException("Invalid index: " + index);
+        };
+    }
+
 <#list 1..oneof as i>
     static <${types_seq?join(", ")}> OneOf${oneof}<${types_seq?join(", ")}> ${variant_names[i - 1]?uncap_first}(T${i} value) {
         return new ${variant_names[i - 1]}<>(value);

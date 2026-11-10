@@ -12,7 +12,7 @@ _Fork of [nolequen's](https://github.com/nolequen/oneof) library_
 ## Installation
 
 ```kotlin
-implementation("pl.andrzejressel:oneof:0.0.1")
+implementation("pl.andrzejressel:oneof:<version>")
 ```
 
 ## Examples
